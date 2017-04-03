@@ -1,14 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/location"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:padding="10dp"
-        android:text="@string/weather" />
-
-</RelativeLayout>
+        android:textAlignment="center"
+        android:textSize="24dp"
+        />
+    <TextView
+        android:id="@+id/cond"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="16dp"
+        />
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/h1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="?android:attr/borderlessButtonStyle"
+                />
+            <Button
+                android:id="@+id/h2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="?android:attr/borderlessButtonStyle"
+                />
+            <Button
+                android:id="@+id/h3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="?android:attr/borderlessButtonStyle"
+                />
+            <Button
+                android:id="@+id/h4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="?android:attr/borderlessButtonStyle"
+                />
+            <Button
+                android:id="@+id/h5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="?android:attr/borderlessButtonStyle"
+                />
+            <Button
+                android:id="@+id/h6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="?android:attr/borderlessButtonStyle"
+                />
+            <Button
+                android:id="@+id/h7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="?android:attr/borderlessButtonStyle"
+                />
+        </LinearLayout>
+    </HorizontalScrollView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/d1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nested_row"
+            style="?android:attr/borderlessButtonStyle"
+            />
+        <Button
+            android:id="@+id/d2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nested_row"
+            style="?android:attr/borderlessButtonStyle"
+            />
+        <Button
+            android:id="@+id/d3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nested_row"
+            style="?android:attr/borderlessButtonStyle"
+            />
+        <Button
+            android:id="@+id/d4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nested_row"
+            style="?android:attr/borderlessButtonStyle"
+            />
+        <Button
+            android:id="@+id/d5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/nested_row"
+            style="?android:attr/borderlessButtonStyle"
+            />
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

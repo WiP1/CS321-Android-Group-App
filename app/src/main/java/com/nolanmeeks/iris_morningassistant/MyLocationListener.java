@@ -9,8 +9,11 @@ import android.os.Bundle;
  */
 
 public class MyLocationListener implements LocationListener {
-    public void onLocationChanged(Location location) {
+    public static double longitude, latitude;
 
+    public void onLocationChanged(Location location) {
+        latitude = location.getLatitude();
+        longitude = location.getLongitude();
     }
     public void onProviderDisabled(String provider) {
         // TODO Auto-generated method stub
