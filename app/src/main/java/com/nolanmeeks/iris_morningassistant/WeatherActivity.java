@@ -54,7 +54,7 @@ public class WeatherActivity extends AppCompatActivity {
                             hourData.get("time"), hourData.get("temp"), hourData.get("rain"));
                 weather.setText(display);
                 String condition = hourData.get("condition").toLowerCase().replaceAll(" ", "");
-                int res = getIcon(condition);
+                int res = getIcon(condition, hourData.get("day?").equals("true"));
                 weather.setCompoundDrawablesWithIntrinsicBounds(0,
                         0, 0, res);
             }
@@ -70,15 +70,15 @@ public class WeatherActivity extends AppCompatActivity {
             HashMap<Integer, HashMap<String, String>> data =
                     (HashMap<Integer, HashMap<String, String>>) a.get();
             for (Integer day : data.keySet()) {
-                HashMap<String, String> hourData = data.get(day);
+                HashMap<String, String> dayData = data.get(day);
                 Button weather = (Button)getView(day+10);
                 String display = null;
-                if (hourData != null)
+                if (dayData != null)
                     display = String.format("%s \n%s\nHigh: %s\t\tLow: %s",
-                            hourData.get("date"), hourData.get("condition"), hourData.get("high"), hourData.get("low"));
+                            dayData.get("date"), dayData.get("condition"), dayData.get("high"), dayData.get("low"));
                 weather.setText(display);
-                String condition = hourData.get("condition").toLowerCase().replaceAll(" ", "");
-                int res = getIcon(condition);
+                String condition = dayData.get("condition").toLowerCase().replaceAll(" ", "");
+                int res = getIcon(condition, true);
                 weather.setCompoundDrawablesWithIntrinsicBounds(0,
                         0, res, 0);
             }
@@ -118,21 +118,27 @@ public class WeatherActivity extends AppCompatActivity {
         return null;
     }
 
-    public static int getIcon(String condition) {
+    public static int getIcon(String condition, boolean isDay) {
         int res;
-        if (condition.contains("partlysunny")) res = R.drawable.partlysunny;
+        if (condition.contains("partlysunny") && isDay) res = R.drawable.partlysunny;
         else if (condition.contains("storms")) res = R.drawable.storms;
-        else if (condition.contains("rain")) res = R.drawable.rain02;
+        else if (condition.contains("rain")&& isDay) res = R.drawable.rain02;
         else if (condition.contains("scatteredshowers")) res = R.drawable.flurries;
         else if (condition.contains("showers")) res = R.drawable.rain01;
-        else if (condition.contains("partlycloudy")) res = R.drawable.partlycloudy;
-        else if  (condition.contains("sunny") || condition.contains("clear")) res = R.drawable.clear;
+        else if (condition.contains("partlycloudy") && isDay) res = R.drawable.partlycloudy;
+        else if  (isDay && (condition.contains("sunny") || condition.contains("clear")))
+            res = R.drawable.clear;
         else if (condition.contains("windy")) res = R.drawable.windy;
-        else if (condition.contains("mostlycloudy")) res = R.drawable.scatteredclouds;
-        else if (condition.contains("cloud")) res = R.drawable.cloudy;
+        else if (isDay && condition.contains("mostlycloudy")) res = R.drawable.scatteredclouds;
+        else if (isDay && condition.contains("cloud")) res = R.drawable.cloudy;
         else if (condition.contains("snow")) res = R.drawable.snow;
-        else if (condition.contains("sunny")) res = R.drawable.mostlysunny;
+        else if (isDay && condition.contains("sunny")) res = R.drawable.mostlysunny;
         else if (condition.contains("fog")) res = R.drawable.fog;
+        else if (condition.contains("clear") && !isDay) res = R.drawable.clearnight;
+        else if (condition.contains("cloudy") && !isDay) res = R.drawable.cloudynight;
+        else if (condition.contains("partlycloudy") && !isDay) res = R.drawable.partlycloundynight;
+        else if (condition.contains("rain") && !isDay) res = R.drawable.rainnight;
+        else if (condition.contains("snow") && !isDay) res = R.drawable.snownight;
         else res = R.drawable.unknown;
         return res;
     }

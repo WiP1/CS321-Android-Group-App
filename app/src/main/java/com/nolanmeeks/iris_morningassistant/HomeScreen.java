@@ -93,7 +93,7 @@ public class HomeScreen extends AppCompatActivity implements View.OnClickListene
                     ProcessJSON.location,data.get("temp"),data.get("condition"));
             weather.setText(display);
             String condition = data.get("condition").toLowerCase().replaceAll(" ","");
-            int res = WeatherActivity.getIcon(condition);
+            int res = WeatherActivity.getIcon(condition, data.get("day?").equals("true"));
             weather.setCompoundDrawablesWithIntrinsicBounds( 0,
                     0, res, 0 );
         } catch (Exception e) {
